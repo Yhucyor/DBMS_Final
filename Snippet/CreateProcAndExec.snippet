@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Create Procedure and Execute</Title>
+            <Shortcut>cproc</Shortcut>
+            <Description>Tạo khung Stored Procedure và lời gọi thực thi (EXEC)</Description>
+            <Author>Tên của bạn</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>SchemaName</ID>
+                    <ToolTip>Tên schema</ToolTip>
+                    <Default>dbo</Default>
+                </Literal>
+                <Literal>
+                    <ID>ProcName</ID>
+                    <ToolTip>Tên thủ tục (Stored Procedure)</ToolTip>
+                    <Default>sp_MyProcedure</Default>
+                </Literal>
+                <Literal>
+                    <ID>ParamName</ID>
+                    <ToolTip>Tên tham số truyền vào</ToolTip>
+                    <Default>Param1</Default>
+                </Literal>
+                <Literal>
+                    <ID>DataType</ID>
+                    <ToolTip>Kiểu dữ liệu của tham số</ToolTip>
+                    <Default>INT</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="SQL"><![CDATA[
+-- =============================================
+-- Description:	$ProcName$
+-- =============================================
+CREATE PROCEDURE $SchemaName$.$ProcName$ 
+    @$ParamName$ $DataType$
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Viết logic SQL của bạn ở đây
+    SELECT @$ParamName$ AS Result;
+    
+END
+GO
+
+-- =============================================
+-- Lời gọi thủ tục (EXEC) để test nhanh
+-- =============================================
+EXEC $SchemaName$.$ProcName$ 
+    @$ParamName$ = 0; -- Nhập giá trị test vào đây
+GO
+]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
